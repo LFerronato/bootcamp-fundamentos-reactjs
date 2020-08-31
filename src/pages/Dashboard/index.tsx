@@ -44,17 +44,20 @@ const Dashboard: React.FC = () => {
     async function loadTransactions(): Promise<void> {
       const { data: result } = await api.get<ResponseDTO>('/transactions')
 
-      const transactionsFormated = result.transactions.map(t => ({
+      const transactionsFormatted = result.transactions.map(t => ({
         ...t,
-        formattedValue: formatValue(t.value),
+        formattedValue: `${t.type === 'outcome' ? '- ' : '   '}${formatValue(
+          t.value,
+        )}`,
+        formattedDate: new Date(t.created_at).toLocaleDateString('pt-br'),
       }))
-      setTransactions(transactionsFormated)
-      const balanceFormated = {
+      setTransactions(transactionsFormatted)
+      const balanceFormatted = {
         income: formatValue(result.balance.income),
         outcome: formatValue(result.balance.outcome),
         total: formatValue(result.balance.total),
       }
-      setBalance(balanceFormated)
+      setBalance(balanceFormatted)
     }
 
     loadTransactions()
@@ -62,7 +65,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header activated={['a', 'i']} />
       <Container>
         <CardContainer>
           <Card>
@@ -100,8 +103,8 @@ const Dashboard: React.FC = () => {
             </thead>
 
             <tbody>
-              {transactions.map(transaction => (
-                <tr>
+              {transactions.map((transaction, index) => (
+                <tr key={index}>
                   <td className="title">{transaction.title}</td>
                   <td className={transaction.type}>
                     {transaction.formattedValue}

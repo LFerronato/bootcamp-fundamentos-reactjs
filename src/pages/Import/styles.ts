@@ -4,7 +4,7 @@ import { shade } from 'polished'
 export const Container = styled.div`
   min-width: 500px;
   width: 100%;
-  /* max-width: 736px; */
+  max-width: 736px;
   margin: 0 auto;
   padding: 40px 20px;
 `
@@ -22,6 +22,23 @@ export const ImportFileContainer = styled.section`
   margin-top: 40px;
   border-radius: 5px;
   padding: 64px;
+`
+
+export const FileItemContainer = styled.ul`
+  margin-top: 20px;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #444;
+    border-left: 1px solid #9994;
+    padding-left: 3px;
+
+    & + li {
+      margin-top: 15px;
+    }
+  }
 `
 
 export const Footer = styled.section`
