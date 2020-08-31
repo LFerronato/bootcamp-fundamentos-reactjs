@@ -59,9 +59,12 @@ export const TableContainer = styled.section`
       color: #969cb3;
       font-weight: normal;
       padding: 20px 32px;
-      text-align: left;
+      text-align: center;
       font-size: 16px;
       line-height: 24px;
+    }
+    th:first-child {
+      text-align: left;
     }
 
     td {
@@ -71,6 +74,7 @@ export const TableContainer = styled.section`
       font-size: 16px;
       font-weight: normal;
       color: #969cb3;
+      text-align: center;
 
       &.title {
         color: #363f5f;
@@ -87,6 +91,7 @@ export const TableContainer = styled.section`
 
     td:first-child {
       border-radius: 8px 0 0 8px;
+      text-align: left;
     }
 
     td:last-child {
